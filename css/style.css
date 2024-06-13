@@ -1,0 +1,118 @@
+/* 
+ * Layout mit flexbox und media queries
+ * Mobile First ansatz!
+ */
+
+/* small screens <600 width */
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#wrapper {
+    display: flex;
+    /* Boxen header, flexbox und footer sollen untereinander stehen*/
+    flex-direction: column;
+    margin: 10px auto;
+}
+
+header, nav, main, aside, footer {
+    border: 1px solid black;
+    padding: 10px;
+    min-height: 50px;
+}
+
+#flexbox {
+    display: flex;
+    flex-direction: column;
+    /* Boxen nav, main und aside sollen untereinander stehen */
+    justify-content: space-between;
+}
+
+header {
+    background-color: #ff3;
+    margin-bottom: 10px;
+}
+
+nav {
+    background-color: #ff9;
+    margin-bottom: 10px;
+}
+
+main {
+    background-color: #ffb;
+    margin-bottom: 10px;
+}
+
+aside {
+    margin-bottom: 10px
+}
+
+footer {
+    background-color: #ff3;
+}
+
+/* 
+* für tablets 
+* die Navigation wird weiterhin horizontal in einer eigenen reihe angezeigt
+* main und aside stehen unten drunter nebeneinander  
+*/
+
+@media only screen and (min-width: 600px) {
+    #wrapper {
+        max-width: 90%;
+        /* gesamtes Layout soll 90% des Browsers einnehmen */
+    }
+    #flexbox {
+        display: flex;
+        flex-direction: row;
+        /* horizontale ausrichtung der Boxen */
+        justify-content: space-between;
+        flex-wrap: wrap;
+        /* sollte der Platz nicht reichen werden die Boxen umbrochen */
+    }
+    nav {
+        width: 100%;
+        /* soll die ganze breite einnehmen, steht deshalb aleine auf einer Reihe*/
+    }
+    main {
+        flex: 2;
+        /* wächst doppelt so schnell wie die anderen Boxen */
+        margin-right: 1%;
+    }
+    aside {
+        flex: 1;
+    }
+}
+
+/*
+* Für desktops
+* nav main und aside stehen nebeneinander
+* 
+*/
+
+@media screen and (min-width: 1200px) {
+    #flexbox {
+        flex-wrap: nowrap;
+        /* nav, main und aside stehen nebeneinander*/
+    }
+    nav {
+        width: 200px;
+        /* nav hat fixe breite und margin zur nächsten box rechts*/
+        margin-right: 1%;
+    }
+}
+
+/* für groosse Bildschirme
+* maximale breite soll beschränkt werden
+*/
+
+@media screen and (min-width: 1800px) {
+    #wrapper {
+        width: 1620px; /* 90% von 1800 */
+    }
+}
